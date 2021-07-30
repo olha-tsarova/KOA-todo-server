@@ -1,0 +1,6 @@
+{
+    "extends": "koa",
+    "rules": {
+        "semi": "off"
+    }
+}
