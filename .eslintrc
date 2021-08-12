@@ -1,6 +1,7 @@
 {
-    "extends": "koa",
-    "rules": {
-        "semi": "off"
-    }
+  "extends": "koa",
+  "rules": {
+    "semi": "off",
+    "space-before-function-paren": "off"
+  }
 }
