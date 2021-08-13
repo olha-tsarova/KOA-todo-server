@@ -15,6 +15,7 @@ export const editTask = async ctx => {
         })
 
         ctx.body = todo
+        ctx.io.emit('task:edit', { todo })
       })
   } catch (e) {
     ctx.status = 400

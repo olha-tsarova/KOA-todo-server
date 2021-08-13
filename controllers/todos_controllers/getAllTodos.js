@@ -36,6 +36,7 @@ export const getAllTodos = async ctx => {
       result.list = todos
     })
     ctx.body = result
+    ctx.io.emit('task:get', { list: result.list })
   } catch (e) {
     ctx.status = 400
     ctx.body = e.message

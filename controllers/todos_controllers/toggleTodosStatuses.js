@@ -10,7 +10,9 @@ export const toggleTodosStatuses = async ctx => {
       { where: { userId: user.id } }
     )
 
-    ctx.body = await ctx.db.todos.findAll({ where: { userId: user.id } })
+    const todos = await ctx.db.todos.findAll({ where: { userId: user.id } })
+    ctx.body = todos
+    ctx.io.emit('task:toggle', todos)
   } catch (e) {
     ctx.status = 401
     ctx.body = e.message

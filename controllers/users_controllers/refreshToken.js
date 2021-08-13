@@ -5,8 +5,6 @@ export const refreshToken = async ctx => {
   try {
     const { query } = ctx
 
-    console.log(query)
-
     const token = await ctx.db.tokens.findOne({
       where: { token: query.oldToken }
     })
@@ -15,7 +13,7 @@ export const refreshToken = async ctx => {
     }
 
     const user = await ctx.db.users.findOne({ where: { id: token.userId } })
-    token.destroy()
+    await token.destroy()
 
     const newToken = jwt.sign(
       { id: user.id, status: user.status },

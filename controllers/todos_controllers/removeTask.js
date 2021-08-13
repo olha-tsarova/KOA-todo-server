@@ -10,6 +10,7 @@ export const removeTask = async ctx => {
         }
         ctx.body = todo
         todo.destroy()
+        ctx.io.emit('task:delete', todo)
       })
   } catch (e) {
     ctx.status = 400

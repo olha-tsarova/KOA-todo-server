@@ -19,6 +19,8 @@ export const addTask = async ctx => {
       userId: user.id
     }
 
+    ctx.io.emit('task:add', newTodo)
+
     await ctx.db.todos.create(newTodo)
     ctx.body = newTodo
   } catch (e) {

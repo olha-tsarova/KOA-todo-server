@@ -36,13 +36,5 @@ export default (DataTypes, sequalize) => {
     { tableName: 'Todo' }
   )
 
-  // Todo.associate = model => {
-  //   Todo.belongsTo(model.User, {
-  //     foreginKey: {
-  //       allowNull: false
-  //     }
-  //   })
-  // }
-
   return Todo
 }

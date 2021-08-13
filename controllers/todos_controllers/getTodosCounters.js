@@ -14,6 +14,10 @@ export const getTodosCounters = async ctx => {
         result.active = countActive
       })
     ctx.body = result
+    ctx.io.emit('task:get-counters', {
+      active: result.active,
+      completed: result.completed
+    })
   } catch (e) {
     ctx.status = 401
     ctx.body = e.message

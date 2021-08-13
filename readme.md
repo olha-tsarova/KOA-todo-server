@@ -1,3 +1,3 @@
 # Server on KOA framework
 
-Created for using with Todo-app & MondoDB (mongoose)
+Created for using with Todo-app & MariaDB (sequalize)

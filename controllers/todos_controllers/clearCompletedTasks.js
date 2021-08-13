@@ -8,6 +8,8 @@ export const clearCompletedTasks = async ctx => {
     })
 
     result.list = await ctx.db.todos.findAll({ where: { userId: user.id } })
+
+    ctx.io.emit('task:clear-completed', { list: result.list })
     ctx.body = result
   } catch (e) {
     ctx.status = 400
