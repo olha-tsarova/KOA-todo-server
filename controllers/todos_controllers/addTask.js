@@ -1,7 +1,9 @@
+import { appUpdated, todoAdded } from "../../constants/socketEvents"
+
 export const addTask = async ctx => {
   try {
     const { request } = ctx
-    const { title, completed, key } = request.body
+    const { title, completed } = request.body
     const { user } = ctx.state
 
     if (!title.trim()) {
@@ -15,11 +17,14 @@ export const addTask = async ctx => {
     const newTodo = {
       title,
       completed,
-      key,
       userId: user.id
     }
 
-    ctx.io.emit('task:add', newTodo)
+    ctx.io.emit(appUpdated, {
+      type: todoAdded,
+      userId: user.id,
+      data: newTodo
+    })
 
     await ctx.db.todos.create(newTodo)
     ctx.body = newTodo

@@ -1,10 +1,12 @@
+import { appUpdated, todoEdited } from "../../constants/socketEvents"
+
 export const editTask = async ctx => {
   try {
     const data = ctx.request.body
     const { user } = ctx.state
 
     await ctx.db.todos
-      .findOne({ where: { key: data.key, userId: user.id } })
+      .findOne({ where: { id: data.id, userId: user.id } })
       .then(todo => {
         if (!todo) {
           throw new Error('Not Found')
@@ -15,7 +17,11 @@ export const editTask = async ctx => {
         })
 
         ctx.body = todo
-        ctx.io.emit('task:edit', { todo })
+        ctx.io.emit(appUpdated, {
+          type: todoEdited,
+          userId: user.id,
+          data: todo
+        })
       })
   } catch (e) {
     ctx.status = 400

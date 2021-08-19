@@ -24,10 +24,6 @@ export default (DataTypes, sequalize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false
       },
-      key: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
       createdAt: {
         type: DataTypes.STRING,
         defaultValue: new Date().toISOString()

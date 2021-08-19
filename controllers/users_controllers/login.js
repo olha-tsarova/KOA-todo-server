@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { v4 as uuid } from 'uuid'
+import { userConnected } from '../../constants/socketEvents'
 
 export const login = async ctx => {
   try {
@@ -46,6 +47,8 @@ export const login = async ctx => {
         role: user.role
       }
     }
+
+    ctx.io.emit(userConnected, { userId: user.id })
   } catch (e) {
     ctx.status = 400
     ctx.body = e.message

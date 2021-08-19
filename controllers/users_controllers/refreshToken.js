@@ -13,7 +13,7 @@ export const refreshToken = async ctx => {
     }
 
     const user = await ctx.db.users.findOne({ where: { id: token.userId } })
-    await token.destroy()
+      token.destroy()
 
     const newToken = jwt.sign(
       { id: user.id, status: user.status },
