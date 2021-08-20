@@ -11,6 +11,7 @@ require('@babel/register')({
   ]
 })
 
-const bootApp = require('./app.js').default
+const app = require('./app')
 
-bootApp()
+// console.log(bootApp)
+app

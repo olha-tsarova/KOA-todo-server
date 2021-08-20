@@ -1,0 +1,16 @@
+{
+  "development": {
+    "database": "TodosDB",
+    "username": "admin",
+    "password": "password",
+    "logging": true,
+    "dialect": "mariadb"
+  },
+  "test": {
+    "database": "TodosDB_test",
+    "username": "admin",
+    "password": "password",
+    "logging": true,
+    "dialect": "mariadb"
+  }
+}
