@@ -43,7 +43,8 @@ app.use(
 
 app.use(controllers.routes())
 
-export default server.listen(port, () => {
-  console.log(`Server is running on port ${port}`)
-})
+if (process.env.NODE_ENV !== 'test') {
+  server.listen(port, () => console.log(`Listening on port ${port}`))
+}
 
+export default server

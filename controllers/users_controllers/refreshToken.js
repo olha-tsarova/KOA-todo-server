@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken'
 import { v4 as uuid } from 'uuid'
+import jwtSign from '../../helpers/jwtSign'
 
 export const refreshToken = async ctx => {
   try {
@@ -18,11 +19,7 @@ export const refreshToken = async ctx => {
     console.log('USER ID BY TOKEN ------->', user)
     token.destroy()
 
-    const newToken = jwt.sign(
-      { id: user.id, status: user.status },
-      process.env.SECRET,
-      { expiresIn: '15m' }
-    )
+    const newToken = jwtSign(user)
 
     const refreshToken = uuid()
 

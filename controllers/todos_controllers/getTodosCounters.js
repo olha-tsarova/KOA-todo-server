@@ -1,4 +1,4 @@
-import { appUpdated, todoGetCounters } from "../../constants/socketEvents"
+import { appUpdated, todoGetCounters } from '../../constants/socketEvents'
 
 export const getTodosCounters = async ctx => {
   try {
@@ -15,17 +15,20 @@ export const getTodosCounters = async ctx => {
       .then(countActive => {
         result.active = countActive
       })
+    // ctx.body = JSON.stringify(result)
     ctx.body = result
-    ctx.io.emit(appUpdated, {
-      type: todoGetCounters,
-      userId: user.id,
-      data: {
-        active: result.active,
-        completed: result.completed
-      }
-    })
+    if (ctx.io) {
+      ctx.io.emit(appUpdated, {
+        type: todoGetCounters,
+        userId: user.id,
+        data: {
+          active: result.active,
+          completed: result.completed
+        }
+      })
+    }
   } catch (e) {
-    ctx.status = 401
+    ctx.status = 400
     ctx.body = e.message
   }
 }

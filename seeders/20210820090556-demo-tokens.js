@@ -18,6 +18,12 @@ export async function up(queryInterface, Sequelize) {
         createdAt: new Date(),
         updatedAt: new Date(),
         userId: user[1].id,
+      },
+      {
+        token: uuid(),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        userId: user[2].id,
       }
     ],
     {}

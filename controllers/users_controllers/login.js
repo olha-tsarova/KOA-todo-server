@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
 import { v4 as uuid } from 'uuid'
 import { userConnected } from '../../constants/socketEvents'
+import jwtSign from '../../helpers/jwtSign'
 
 export const login = async ctx => {
   try {
@@ -25,11 +25,8 @@ export const login = async ctx => {
     }
 
     console.log('USER _______>', user.login, user.id)
-    const accessToken = jwt.sign(
-      { id: user.id, status: user.status },
-      process.env.SECRET,
-      { expiresIn: '15m' }
-    )
+    const accessToken = jwtSign(user)
+    console.log(accessToken)
 
     const refreshToken = uuid()
 
@@ -51,8 +48,9 @@ export const login = async ctx => {
       }
     }
 
-    ctx.io.emit(userConnected, { userId: user.id })
-
+    if (ctx.io) {
+      ctx.io.emit(userConnected, { userId: user.id })
+    }
   } catch (e) {
     ctx.status = 400
     ctx.body = e.message

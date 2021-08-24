@@ -13,6 +13,14 @@ export async function up(queryInterface, Sequelize) {
         updatedAt: new Date()
       },
       {
+        name: 'Palette',
+        login: 'Palette',
+        email: 'Palette@test.test',
+        password: 'Palette',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
         name: 'The Dude',
         login: 'Dude',
         email: 'mrLebowski@test.test',

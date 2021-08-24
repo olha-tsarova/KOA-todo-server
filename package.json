@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "pretest": "NODE_ENV=test sequelize-cli db:seed:all",
-    "test": "jest --testTimeout=10000",
+    "test": "jest --testTimeout=10000 --coverage",
     "posttest": "NODE_ENV=test sequelize-cli db:seed:undo:all",
     "start": "nodemon index.js"
   },
@@ -44,6 +44,7 @@
     "eslint-config-koa": "^2.0.2",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jest": "^24.4.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-standard": "^5.0.0",
