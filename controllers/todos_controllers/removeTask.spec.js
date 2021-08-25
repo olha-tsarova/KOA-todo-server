@@ -10,7 +10,7 @@ describe('Testing DELETE TODOS Api', () => {
     return db.sequelize.sync()
   })
 
-  it('should delete user\'s task', async () => {
+  it("should delete user's task", async () => {
     const users = await db.users.findAll()
     const user = users[2]
     const userToken = jwtSign(user)
@@ -33,7 +33,7 @@ describe('Testing DELETE TODOS Api', () => {
     )
   })
 
-  it('shouldn\'t delete user\'s task', async () => {
+  it("shouldn't delete user's task", async () => {
     const users = await db.users.findAll()
     const user = users[2]
     const userToken = jwtSign(user)
@@ -51,7 +51,7 @@ describe('Testing DELETE TODOS Api', () => {
     expect(response.text).toBe('Not Found')
   })
 
-  it('shouldn\'t delete user\'s task because id is not defined', async () => {
+  it("shouldn't delete user's task because id is not defined", async () => {
     const users = await db.users.findAll()
     const user = users[2]
     const userToken = jwtSign(user)

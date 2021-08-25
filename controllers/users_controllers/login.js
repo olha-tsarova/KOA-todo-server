@@ -8,8 +8,6 @@ export const login = async ctx => {
     const { request } = ctx
     const { login, password } = request.body
 
-    console.log('NEW CONNECTION -->', login, password)
-
     const user = await ctx.db.users.findOne({ where: { login: login } })
     if (!user) {
       throw new Error(`User ${login} not found!`)
@@ -24,10 +22,7 @@ export const login = async ctx => {
       throw new Error(`User ${login} is blocked`)
     }
 
-    console.log('USER _______>', user.login, user.id)
     const accessToken = jwtSign(user)
-    console.log(accessToken)
-
     const refreshToken = uuid()
 
     await ctx.db.tokens.create({

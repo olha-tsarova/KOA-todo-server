@@ -1,4 +1,7 @@
 'use strict'
+import bcrypt from 'bcrypt'
+
+const hash = async (pass) => await bcrypt.hash(pass, 2)
 
 export async function up(queryInterface, Sequelize) {
   await queryInterface.bulkInsert(
@@ -8,7 +11,8 @@ export async function up(queryInterface, Sequelize) {
         name: 'John Doe',
         login: 'John',
         email: 'JohnDoe@test.test',
-        password: 'John',
+        status: 1,
+        password: await hash('John'),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -16,7 +20,8 @@ export async function up(queryInterface, Sequelize) {
         name: 'Palette',
         login: 'Palette',
         email: 'Palette@test.test',
-        password: 'Palette',
+        status: 1,
+        password: await hash('Palette'),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -24,7 +29,8 @@ export async function up(queryInterface, Sequelize) {
         name: 'The Dude',
         login: 'Dude',
         email: 'mrLebowski@test.test',
-        password: 'Dude',
+        status: 0,
+        password: await hash('Dude'),
         createdAt: new Date(),
         updatedAt: new Date()
       }

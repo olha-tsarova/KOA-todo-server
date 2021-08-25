@@ -29,8 +29,6 @@ export const registration = async ctx => {
       email: newUserData.email,
       name: newUserData.name,
       password: hash,
-      // createdAt: new Date().toISOString(),
-      // updatedAt: new Date().toISOString()
     }
 
     await ctx.db.users.create(newUser)
